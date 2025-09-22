@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# Assesment_HRMS_ReactPHP
+A dynamic web application with a modern home page built using React.js for the frontend and Laravel for the backend. The project features a user-friendly design with a dynamic image carousel and a scrollable content feed. A key feature is the HR login manage Employee, accessible directly from the home page footer.
+>>>>>>> 7d5d0456723032ef65bef2bea335fdf5a611ed84
