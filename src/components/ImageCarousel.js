@@ -4,7 +4,6 @@ import './css/ImageCarousel.css';
 const ImageCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Dummy image paths. Place your images in the public/images folder.
   const images = [
     "/images/Image_1.jpg",
     "/images/Image_2.jpg", 
@@ -12,7 +11,6 @@ const ImageCarousel = () => {
     "/images/Image_4.jpg"
   ];
 
-  // Auto-slide functionality
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -48,7 +46,6 @@ const ImageCarousel = () => {
                   alt={`Slide ${index + 1}`}
                   className="carousel-image"
                   onError={(e) => {
-                    // Fallback image if the original image is not found
                     e.target.src = `https://via.placeholder.com/800x400/3498db/ffffff?text=Image+${index + 1}`;
                   }}
                 />

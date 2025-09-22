@@ -4,7 +4,6 @@ import './css/Header.css';
 const Header = () => {
   return (
     <div className="header">
-      {/* Removed .logo-container */}
       <div className="logo-placeholder">
         <img src="/images/company_logo3.jpg" alt="Company Logo" />
       </div>

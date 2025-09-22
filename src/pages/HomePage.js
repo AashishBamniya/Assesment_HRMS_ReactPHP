@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageCarousel from '../components/ImageCarousel';
-import FeedScroll from '../components/FeedScroll'; // Import the new component
+import FeedScroll from '../components/FeedScroll';
 import './css/HomePage.css';
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
       <Header />
       <main className="main-content">
         <ImageCarousel />
-        <FeedScroll /> {/* Use the new component here */}
+        <FeedScroll />
       </main>
       <Footer />
     </div>

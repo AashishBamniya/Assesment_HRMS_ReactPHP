@@ -68,23 +68,46 @@
 
 @media (max-width: 768px) {
   .header {
-    padding: 20px;
-    flex-direction: column;
-    text-align: center;
+    padding: 15px 20px; /* Reduced padding for mobile */
+    flex-direction: row; /* Changed from column to row */
+    text-align: left; /* Changed from center to left */
+    align-items: center; /* Ensure vertical alignment */
   }
   
   .logo-placeholder {
-    margin-right: 0;
-    margin-bottom: 15px;
+    margin-right: 15px; /* Keep margin on right */
+    margin-bottom: 0; /* Remove bottom margin */
+    width: 50px; /* Slightly smaller for mobile */
+    height: 50px; /* Slightly smaller for mobile */
   }
   
   .header-text h1 {
-    font-size: 24px;
+    font-size: 20px; /* Slightly smaller for mobile */
+    text-align: left; /* Align text to left */
+  }
+  
+  .header-text p {
+    font-size: 12px; /* Slightly smaller for mobile */
+    text-align: left; /* Align text to left */
   }
 }
 
 @media (max-width: 480px) {
   .header {
-    padding: 15px 20px;
+    padding: 12px 15px; /* Further reduced padding for small mobile */
+  }
+  
+  .logo-placeholder {
+    width: 45px; /* Even smaller for very small screens */
+    height: 45px; /* Even smaller for very small screens */
+    margin-right: 12px; /* Reduced margin */
+  }
+  
+  .header-text h1 {
+    font-size: 18px; /* Smaller font for very small screens */
+  }
+  
+  .header-text p {
+    font-size: 11px; /* Smaller font for very small screens */
   }
 }

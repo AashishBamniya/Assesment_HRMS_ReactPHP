@@ -135,11 +135,3 @@ A brief overview of the key folders and files in this project:
 ├── package.json
 
 └── README.md
-
-🎨 Customization
-
-Change Logo: Replace public/images/logo_company.jpeg with your own .jpeg or .png file.
-
-Change Colors: Modify the CSS variables or color codes in the .css files (e.g., Header.css, LoginPage.css) to change the color scheme.
-
-Update Content: Edit the text and data in src/components/FeedScroll.js or other component files to update the content.

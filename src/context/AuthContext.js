@@ -6,7 +6,6 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
 
-  // Check local storage on initial app load to restore previous login state
   useEffect(() => {
     const storedLoginState = localStorage.getItem('isLoggedIn');
     const storedRole = localStorage.getItem('role');
@@ -19,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   const login = (userRole) => {
     setIsLoggedIn(true);
     setRole(userRole);
-    // Save login state to local storage
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('role', userRole);
   };
@@ -27,7 +25,6 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsLoggedIn(false);
     setRole(null);
-    // Remove login state from local storage
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('role');
   };
@@ -39,7 +36,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to easily access the auth context
 export const useAuth = () => {
   return useContext(AuthContext);
 };

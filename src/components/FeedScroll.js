@@ -19,7 +19,6 @@ const FeedScroll = () => {
       title: 'EMPLOYEE OF THE MONTH',
       content: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     },
-    // Duplicate the data to ensure a seamless looping effect
     {
       title: 'Q3 GROWTH REPORT',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -44,7 +43,6 @@ const FeedScroll = () => {
       <div className="feed-wrapper">
         <div className="feed-track">
           {feedsData.map((feed, index) => (
-            // Changed from .feed-card to .feed-item
             <div key={index} className="feed-item">
               <h3>{feed.title}</h3>
               <p>{feed.content}</p>
