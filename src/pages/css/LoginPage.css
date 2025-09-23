@@ -1,13 +1,16 @@
 /* LoginPage.css */
 .login-main {
+    /* Sets up the main container for the login form */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    /* Adds consistent padding for all screen sizes to create space */
     padding: 40px;
 }
 
 .login-box {
+    /* Styles the login card itself */
     background: rgba(255, 255, 255, 0.2);
     padding: 40px;
     border-radius: 15px;
@@ -15,6 +18,7 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    /* Sets a maximum width for the card on larger screens */
     width: 100%;
     max-width: 450px;
     text-align: center;
@@ -135,13 +139,19 @@
     color: #c0392b;
 }
 
+/* Final Responsive Styles for Mobile */
 @media (max-width: 480px) {
     .login-main {
-        padding: 10px;
+        /* This padding creates the top and bottom space from the header/footer */
+        padding: 20px 0;
     }
     
     .login-box {
+        /* Sets the width to 90% and adds left/right margin for consistent spacing from the sides */
+        width: 90%;
         padding: 20px;
+        margin-left: 5%;
+        margin-right: 5%;
     }
     
     .login-box h2 {
@@ -150,22 +160,22 @@
     }
     
     .form-group {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
     
     .form-group input,
     .form-group select {
-        padding: 8px 10px;
-        font-size: 14px;
+        padding: 10px 12px;
+        font-size: 15px;
     }
     
     .login-btn {
-        padding: 10px;
-        font-size: 14px;
+        padding: 12px;
+        font-size: 16px;
     }
     
     .forgot-password {
-        margin-top: 10px;
-        font-size: 12px;
+        margin-top: 15px;
+        font-size: 13px;
     }
 }

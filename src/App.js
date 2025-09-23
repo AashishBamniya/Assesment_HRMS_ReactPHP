@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import AddEmployeePage from './pages/AddEmployeePage';
 import ManageEmployeePage from './pages/ManageEmployeePage';
+import ApprovalPage from './pages/ApprovalPage'; // New import
 import './App.css';
 
 // ProtectedRoute component to control access to routes
@@ -45,6 +46,14 @@ function App() {
                             element={
                                 <ProtectedRoute allowedRoles={['HR', 'Employee']}>
                                     <ManageEmployeePage />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/approval" // New route for ApprovalPage
+                            element={
+                                <ProtectedRoute allowedRoles={['HR']}>
+                                    <ApprovalPage />
                                 </ProtectedRoute>
                             }
                         />
