@@ -94,3 +94,82 @@
   background-color: #e9ecef;
   transition: background-color 0.3s ease;
 }
+
+/* New styles for the action buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.action-buttons button:hover {
+  transform: scale(1.1);
+}
+
+.update-btn {
+  color: #3498db;
+}
+
+.delete-btn {
+  color: #e74c3c;
+}
+
+
+/* --- Mobile View Fixes --- */
+
+@media (max-width: 768px) {
+  .manage-employee-box {
+    padding: 20px;
+  }
+
+  .manage-employee-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .filter-container {
+    flex-direction: row; 
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .employee-table-container {
+    overflow-x: auto;
+  }
+
+  .employee-table th,
+  .employee-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  /* Additional adjustment for mobile table headers */
+  .employee-table th {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .manage-employee-box {
+    padding: 15px;
+  }
+  
+  .manage-employee-box h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .employee-table th,
+  .employee-table td {
+    font-size: 12px;
+  }
+}

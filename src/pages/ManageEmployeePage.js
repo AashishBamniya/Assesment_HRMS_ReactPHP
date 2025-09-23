@@ -11,7 +11,7 @@ const ManageEmployeePage = ({ employees }) => {
     { sr: 1, name: 'Ashish Sharma', code: 'EMP001', dept: 'IT', proj: 'Project A' },
     { sr: 2, name: 'Priya Singh', code: 'EMP002', dept: 'HR', proj: 'Project B' },
     { sr: 3, name: 'Rahul Jain', code: 'EMP003', dept: 'IT', proj: 'Project C' },
-    { sr: 4, name: 'Anjali Gupta', code: 'EMP004', dept: 'Marketing', proj: 'Project D' },
+    { sr: 4, name: 'Anjali Gupta', code: 'EMP004', dept: 'MK', proj: 'Project D' },
     { sr: 5, name: 'Vikram Yadav', code: 'EMP005', dept: 'HR', proj: 'Project A' },
   ];
 
@@ -20,6 +20,17 @@ const ManageEmployeePage = ({ employees }) => {
     : dummyEmployees.filter(emp => emp.dept === selectedDept);
 
   const departments = ['All', ...new Set(dummyEmployees.map(emp => emp.dept))];
+
+  // Placeholder functions for button actions
+  const handleUpdate = (employeeCode) => {
+    console.log(`Update action triggered for employee: ${employeeCode}`);
+    // Add your logic to handle the update here
+  };
+
+  const handleDelete = (employeeCode) => {
+    console.log(`Delete action triggered for employee: ${employeeCode}`);
+    // Add your logic to handle the delete here
+  };
 
   return (
     <div className="container">
@@ -43,7 +54,7 @@ const ManageEmployeePage = ({ employees }) => {
                   <th>Name</th>
                   <th>Code</th>
                   <th>Dept.</th>
-                  <th>Proj.</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,7 +64,10 @@ const ManageEmployeePage = ({ employees }) => {
                     <td>{emp.name}</td>
                     <td>{emp.code}</td>
                     <td>{emp.dept}</td>
-                    <td>{emp.proj}</td>
+                    <td className="action-buttons">
+                      <button className="update-btn" onClick={() => handleUpdate(emp.code)}>✏️</button>
+                      <button className="delete-btn" onClick={() => handleDelete(emp.code)}>🗑️</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
