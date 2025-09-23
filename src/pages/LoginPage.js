@@ -4,32 +4,28 @@ import { useAuth } from '../context/AuthContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './css/LoginPage.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
     const [loginAs, setLoginAs] = useState('');
     const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // New state for password visibility
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { login } = useAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // Check if a role is selected from the dropdown
         if (!loginAs) {
             alert('Please select a role to log in.');
             return;
         }
 
-        // A simple regex to check for a valid email format
         const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginId);
-        // Simple password validation (e.g., at least 4 characters)
         const isPasswordValid = password.length >= 4;
 
         if (isEmailValid && isPasswordValid) {
-            // Call the login function from AuthContext to set the state and role
             login(loginAs);
 
             if (loginAs === 'HR') {
@@ -49,7 +45,8 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="container">
+        // Add the new class here
+        <div className="container login-page-container"> 
             <Header />
             <main className="login-main">
                 <div className="login-box">
@@ -57,7 +54,6 @@ const LoginPage = () => {
                     <form onSubmit={handleLogin}>
                         <div className="form-group">
                             <label htmlFor="login-as">Login As</label>
-                            {/* Dropdown menu for role selection */}
                             <select
                                 id="login-as"
                                 value={loginAs}
@@ -79,9 +75,9 @@ const LoginPage = () => {
                                 required
                             />
                         </div>
-                        <div className="form-group password-group"> {/* Added password-group class */}
+                        <div className="form-group password-group">
                             <label htmlFor="password">Password</label>
-                            <div className="password-input-container"> {/* Added a new container */}
+                            <div className="password-input-container">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     id="password"

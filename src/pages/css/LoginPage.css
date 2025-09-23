@@ -1,16 +1,13 @@
 /* LoginPage.css */
 .login-main {
-    /* Sets up the main container for the login form */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    /* Adds consistent padding for all screen sizes to create space */
     padding: 40px;
 }
 
 .login-box {
-    /* Styles the login card itself */
     background: rgba(255, 255, 255, 0.2);
     padding: 40px;
     border-radius: 15px;
@@ -18,7 +15,6 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    /* Sets a maximum width for the card on larger screens */
     width: 100%;
     max-width: 450px;
     text-align: center;
@@ -86,7 +82,7 @@
 }
 
 .password-input-container input {
-    padding-right: 45px; /* Add padding to make space for the icon */
+    padding-right: 45px;
 }
 
 .password-toggle-icon {
@@ -98,7 +94,7 @@
     color: #555;
     font-size: 1.2rem;
     transition: color 0.3s ease;
-    z-index: 10; /* Ensures the icon is above the input field */
+    z-index: 10;
 }
 
 .password-toggle-icon:hover {
@@ -141,39 +137,41 @@
 
 /* Final Responsive Styles for Mobile */
 @media (max-width: 480px) {
+    /* This rule will override any padding from other files */
+    .container.login-page-container {
+        padding: 0 !important;
+    }
+
     .login-main {
-        /* This padding creates the top and bottom space from the header/footer */
-        padding: 20px 0;
+        padding: 0;
     }
-    
+
     .login-box {
-        /* Sets the width to 90% and adds left/right margin for consistent spacing from the sides */
-        width: 90%;
-        padding: 20px;
-        margin-left: 5%;
-        margin-right: 5%;
+        width: 100%;
+        margin: 0;
+        padding: 20px 15px;
     }
-    
+
     .login-box h2 {
         font-size: 22px;
         margin-bottom: 15px;
     }
-    
+
     .form-group {
         margin-bottom: 15px;
     }
-    
+
     .form-group input,
     .form-group select {
         padding: 10px 12px;
         font-size: 15px;
     }
-    
+
     .login-btn {
         padding: 12px;
         font-size: 16px;
     }
-    
+
     .forgot-password {
         margin-top: 15px;
         font-size: 13px;
