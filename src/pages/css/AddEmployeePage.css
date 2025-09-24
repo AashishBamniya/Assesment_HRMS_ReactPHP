@@ -125,3 +125,29 @@
         font-size: 14px;
     }
 }
+
+/* Error styling */
+.error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.3) !important;
+}
+
+.error-text {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Loading state */
+.add-emp-btn:disabled {
+    background-color: #95a5a6 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* Placeholder styling */
+.add-employee-form input::placeholder {
+    color: #999;
+    font-size: 14px;
+}

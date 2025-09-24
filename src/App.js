@@ -1,29 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import AddEmployeePage from './pages/AddEmployeePage';
 import ManageEmployeePage from './pages/ManageEmployeePage';
-import ApprovalPage from './pages/ApprovalPage'; // New import
+import ApprovalPage from './pages/ApprovalPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
-
-// ProtectedRoute component to control access to routes
-const ProtectedRoute = ({ children, allowedRoles }) => {
-    const { isLoggedIn, role } = useAuth();
-
-    if (!isLoggedIn) {
-        // If not logged in, redirect to the login page
-        return <Navigate to="/login" replace />;
-    }
-    if (allowedRoles && !allowedRoles.includes(role)) {
-        // If logged in but the role is not allowed, redirect to the home page
-        return <Navigate to="/" replace />;
-    }
-
-    // If logged in and role is correct, render the children (the page component)
-    return children;
-};
 
 function App() {
     return (
@@ -50,7 +34,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="/approval" // New route for ApprovalPage
+                            path="/approval"
                             element={
                                 <ProtectedRoute allowedRoles={['HR']}>
                                     <ApprovalPage />

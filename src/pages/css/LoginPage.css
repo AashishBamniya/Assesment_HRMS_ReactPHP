@@ -1,22 +1,23 @@
-/* LoginPage.css */
 .login-main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding: 40px;
+    padding: 30px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login-box {
     background: rgba(255, 255, 255, 0.2);
-    padding: 40px;
+    padding: 50px;
     border-radius: 15px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     width: 100%;
-    max-width: 450px;
+    max-width: 700px;
     text-align: center;
 }
 
@@ -71,7 +72,6 @@
     cursor: pointer;
 }
 
-/* New CSS for the password input and eye icon */
 .password-group {
     position: relative;
 }
@@ -135,21 +135,30 @@
     color: #c0392b;
 }
 
-/* Final Responsive Styles for Mobile */
-@media (max-width: 480px) {
-    /* This rule will override any padding from other files */
-    .container.login-page-container {
-        padding: 0 !important;
-    }
-
+@media (max-width: 768px) {
     .login-main {
-        padding: 0;
+        padding: 20px 15px;
     }
 
     .login-box {
-        width: 100%;
-        margin: 0;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container.login-page-container {
+        padding: 0 !important;
+        overflow-x: hidden;
+    }
+    
+    .login-main {
+        padding: 15px 10px;
+    }
+
+    .login-box {
         padding: 20px 15px;
+        max-width: 95%;
+        margin: 0 auto;
     }
 
     .login-box h2 {

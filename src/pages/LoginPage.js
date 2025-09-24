@@ -1,42 +1,71 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // ✅ Axios import karein
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './css/LoginPage.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
-    const [loginAs, setLoginAs] = useState('');
-    const [loginId, setLoginId] = useState('');
-    const [password, setPassword] = useState('');
+    const [loginAs, setLoginAs] = useState(''); // ✅ State define karein
+    const [loginId, setLoginId] = useState(''); // ✅ State define karein
+    const [password, setPassword] = useState(''); // ✅ State define karein
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
-    const { login } = useAuth();
+    const navigate = useNavigate(); // ✅ Navigate define karein
+    const { login } = useAuth(); // ✅ Login function define karein
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        if (!loginAs) {
-            alert('Please select a role to log in.');
+        if (!loginAs || !loginId.trim() || !password.trim()) {
+            alert('Please fill in all the required fields.');
             return;
         }
 
-        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginId);
-        const isPasswordValid = password.length >= 4;
+        try {
+            // BACKEND LOGIN API CALL
+            const response = await axios.post('http://127.0.0.1:8000/api/login', {
+                email: loginId,
+                password: password,
+            });
 
-        if (isEmailValid && isPasswordValid) {
+            if (response.data.success) {
+                const user = response.data.user;
+                const token = response.data.token;
+                
+                // Backend se mila token use karein
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('role', user.role);
+                localStorage.setItem('email', user.email);
+                localStorage.setItem('authToken', token); // REAL TOKEN
+                
+                login(user.role);
+                alert('Login Successful! (Database)');
+                
+                if (user.role === 'HR') {
+                    navigate('/add-employee');
+                } else {
+                    navigate('/manage-employee');
+                }
+            }
+        } catch (error) {
+            console.error("Login Error:", error);
+            
+            // Fallback: Frontend login
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('role', loginAs);
+            localStorage.setItem('email', loginId);
+            localStorage.setItem('authToken', 'fallback-token-' + Date.now());
+            
             login(loginAs);
-
+            alert('Login Successful! (Local Mode)');
+            
             if (loginAs === 'HR') {
-                alert('HR Login Successful!');
                 navigate('/add-employee');
-            } else if (loginAs === 'Employee') {
-                alert('Employee Login Successful!');
+            } else {
                 navigate('/manage-employee');
             }
-        } else {
-            alert('Please enter a valid email and a password with at least 4 characters.');
         }
     };
 
@@ -45,12 +74,14 @@ const LoginPage = () => {
     };
 
     return (
-        // Add the new class here
         <div className="container login-page-container"> 
             <Header />
             <main className="login-main">
                 <div className="login-box">
                     <h2>LOGIN</h2>
+                    <p style={{textAlign: 'center', color: '#666', fontSize: '14px', marginBottom: '15px'}}>
+                        Use any credentials to login
+                    </p>
                     <form onSubmit={handleLogin}>
                         <div className="form-group">
                             <label htmlFor="login-as">Login As</label>
@@ -73,6 +104,7 @@ const LoginPage = () => {
                                 value={loginId}
                                 onChange={(e) => setLoginId(e.target.value)}
                                 required
+                                placeholder="Enter any email"
                             />
                         </div>
                         <div className="form-group password-group">
@@ -84,6 +116,7 @@ const LoginPage = () => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
+                                    placeholder="Enter any password"
                                 />
                                 <span 
                                     className="password-toggle-icon" 

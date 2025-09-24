@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaHome, FaUsers, FaUserTie, FaSignInAlt, FaSignOutAlt, FaTasks, FaClipboardCheck } from 'react-icons/fa';
 import './css/Footer.css';
@@ -7,18 +7,18 @@ import './css/Footer.css';
 const Footer = () => {
     const { isLoggedIn, logout, role } = useAuth();
     const location = useLocation();
-    const navigate = useNavigate();
-
-    const handleRefresh = () => {
-        window.location.reload();
-    };
 
     const isCurrentPath = (path) => location.pathname === path;
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        logout();
+        window.location.href = '/';
+    };
 
     return (
         <footer className="footer">
             <nav className="footer-nav">
-                {/* Home Icon (always visible) */}
                 <NavLink to="/">
                     <FaHome className="footer-icon" />
                     <span className="footer-text">Home</span>
@@ -26,7 +26,6 @@ const Footer = () => {
 
                 {isLoggedIn ? (
                     <>
-                        {/* Second icon: Routes to AddEmployeePage */}
                         <NavLink 
                             to="/add-employee"
                             className={isCurrentPath('/add-employee') ? 'active' : ''}
@@ -35,7 +34,6 @@ const Footer = () => {
                             <span className="footer-text">Add Emp</span>
                         </NavLink>
 
-                        {/* Third icon: Manage Employee */}
                         <NavLink 
                             to="/manage-employee"
                             className={isCurrentPath('/manage-employee') ? 'active' : ''}
@@ -44,7 +42,6 @@ const Footer = () => {
                             <span className="footer-text">Manage</span>
                         </NavLink>
 
-                        {/* Fourth icon: Approval (Only for HR role) */}
                         {role === 'HR' && (
                             <NavLink 
                                 to="/approval"
@@ -55,15 +52,13 @@ const Footer = () => {
                             </NavLink>
                         )}
 
-                        {/* Logout button */}
-                        <a href="#" onClick={logout}>
+                        <a href="#" onClick={handleLogout}>
                             <FaSignOutAlt className="footer-icon" />
                             <span className="footer-text">Logout</span>
                         </a>
                     </>
                 ) : (
                     <>
-                        {/* Links for Logged-Out users */}
                         <NavLink to="/manage-employee">
                             <FaUsers className="footer-icon" />
                             <span className="footer-text">EMP</span>

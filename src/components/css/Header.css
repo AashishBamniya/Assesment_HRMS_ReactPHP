@@ -33,7 +33,7 @@
 }
 
 .logo-placeholder:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .logo-placeholder img {
@@ -66,48 +66,52 @@
   opacity: 0.9;
 }
 
+/* Media query for tablets and phones */
 @media (max-width: 768px) {
   .header {
-    padding: 15px 20px; /* Reduced padding for mobile */
-    flex-direction: row; /* Changed from column to row */
-    text-align: left; /* Changed from center to left */
-    align-items: center; /* Ensure vertical alignment */
+    padding: 15px 20px;
+    /* Use flex-direction row for better horizontal layout on small screens */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .logo-placeholder {
-    margin-right: 15px; /* Keep margin on right */
-    margin-bottom: 0; /* Remove bottom margin */
-    width: 50px; /* Slightly smaller for mobile */
-    height: 50px; /* Slightly smaller for mobile */
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Adjusted margin */
   }
   
+  .header-text {
+    flex-grow: 1; /* Allow the text to take up available space */
+    text-align: left;
+  }
+
   .header-text h1 {
-    font-size: 20px; /* Slightly smaller for mobile */
-    text-align: left; /* Align text to left */
+    font-size: 20px;
   }
   
   .header-text p {
-    font-size: 12px; /* Slightly smaller for mobile */
-    text-align: left; /* Align text to left */
+    font-size: 12px;
   }
 }
 
+/* Media query for small mobile phones */
 @media (max-width: 480px) {
   .header {
-    padding: 12px 15px; /* Further reduced padding for small mobile */
+    padding: 12px 15px;
   }
   
   .logo-placeholder {
-    width: 45px; /* Even smaller for very small screens */
-    height: 45px; /* Even smaller for very small screens */
-    margin-right: 12px; /* Reduced margin */
+    width: 40px;
+    height: 40px;
   }
   
   .header-text h1 {
-    font-size: 18px; /* Smaller font for very small screens */
+    font-size: 18px;
   }
   
   .header-text p {
-    font-size: 11px; /* Smaller font for very small screens */
+    font-size: 11px;
   }
 }
