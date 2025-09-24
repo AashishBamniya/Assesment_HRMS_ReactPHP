@@ -60,15 +60,17 @@ const AddEmployeePage = () => {
             const response = await axios.post('http://127.0.0.1:8000/api/employees', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type':'application/json'
                 },
-                timeout: 5000 // 5 second timeout
+                timeout: 10000 // 10 second timeout
             });
 
             if (response.data.success) {
                 alert('Employee added to MySQL database successfully!');
                 setFormData({ name: '', code: '', doj: '', dept: '', proj: '' });
                 navigate('/manage-employee');
+            } else {
+                throw new Error('Backend response not successful');
             }
 
         } catch (error) {
