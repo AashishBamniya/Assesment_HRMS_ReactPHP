@@ -109,7 +109,6 @@ const AddEmployeePage = () => {
                 <div className="add-employee-box">
                     <h2>ADD EMPLOYEE</h2>
                     <p style={{textAlign: 'center', color: '#666', fontSize: '12px'}}>
-                        Trying to save to MySQL database...
                     </p>
                     <form className="add-employee-form" onSubmit={handleSubmit}>
                         <div className="form-group">

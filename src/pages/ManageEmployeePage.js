@@ -5,6 +5,8 @@ import './css/ManageEmployeePage.css';
 
 const ManageEmployeePage = ({ employees }) => {
     const [selectedDept, setSelectedDept] = useState('All');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5; // ek page par 3 employees
 
     // Dummy data for employees
     const dummyEmployees = [
@@ -21,15 +23,24 @@ const ManageEmployeePage = ({ employees }) => {
 
     const departments = ['All', ...new Set(dummyEmployees.map(emp => emp.dept))];
 
+    // Pagination calculation
+    const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedEmployees = filteredEmployees.slice(startIndex, startIndex + itemsPerPage);
+
     // Placeholder functions for button actions
     const handleUpdate = (employeeCode) => {
         console.log(`Update action triggered for employee: ${employeeCode}`);
-        // Add your logic to handle the update here
     };
 
     const handleDelete = (employeeCode) => {
         console.log(`Delete action triggered for employee: ${employeeCode}`);
-        // Add your logic to handle the delete here
+    };
+
+    // Dept change par hamesha first page se start ho
+    const handleDeptChange = (e) => {
+        setSelectedDept(e.target.value);
+        setCurrentPage(1);
     };
 
     return (
@@ -38,14 +49,18 @@ const ManageEmployeePage = ({ employees }) => {
             <main className="manage-employee-main">
                 <div className="manage-employee-box">
                     <h2>MANAGE EMPLOYEE</h2>
+
+                    {/* Department Filter */}
                     <div className="filter-container">
                         <label htmlFor="dept-select">Select Dept.</label>
-                        <select id="dept-select" value={selectedDept} onChange={(e) => setSelectedDept(e.target.value)}>
+                        <select id="dept-select" value={selectedDept} onChange={handleDeptChange}>
                             {departments.map((dept, index) => (
                                 <option key={index} value={dept}>{dept}</option>
                             ))}
                         </select>
                     </div>
+
+                    {/* Employee Table */}
                     <div className="employee-table-container">
                         <table className="employee-table">
                             <thead>
@@ -58,7 +73,7 @@ const ManageEmployeePage = ({ employees }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredEmployees.map(emp => (
+                                {paginatedEmployees.map(emp => (
                                     <tr key={emp.code}>
                                         <td>{emp.sr}</td>
                                         <td>{emp.name}</td>
@@ -72,6 +87,33 @@ const ManageEmployeePage = ({ employees }) => {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+
+                    {/* Pagination */}
+                    <div className="pagination">
+                        <button 
+                            disabled={currentPage === 1} 
+                            onClick={() => setCurrentPage(prev => prev - 1)}
+                        >
+                            &lt;
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
+                            <button
+                                key={num}
+                                className={currentPage === num ? "active" : ""}
+                                onClick={() => setCurrentPage(num)}
+                            >
+                                {num}
+                            </button>
+                        ))}
+
+                        <button 
+                            disabled={currentPage === totalPages} 
+                            onClick={() => setCurrentPage(prev => prev + 1)}
+                        >
+                            &gt;
+                        </button>
                     </div>
                 </div>
             </main>

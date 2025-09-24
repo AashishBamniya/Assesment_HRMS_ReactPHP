@@ -1,11 +1,9 @@
-/* ManageEmployeePage.css */
-
 .manage-employee-main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding: 20px; /* Reduced padding for better mobile fit */
+    padding: 20px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -31,7 +29,7 @@
     border-bottom: 3px solid #e74c3c;
     display: inline-block;
     padding-bottom: 5px;
-    white-space: nowrap; /* Prevents heading from wrapping on small screens */
+    white-space: nowrap;
 }
 
 .filter-container {
@@ -46,6 +44,7 @@
     font-weight: 600;
     color: #555;
     white-space: nowrap;
+    margin: 0; /* Remove any default margins */
 }
 
 .filter-container select {
@@ -55,6 +54,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: auto; /* Ensure it doesn't stretch full width */
 }
 
 .filter-container select:focus {
@@ -90,7 +90,7 @@
 
 .employee-table td {
     color: #333;
-    white-space: nowrap; /* Prevents long names from wrapping */
+    white-space: nowrap;
 }
 
 .employee-table tbody tr:nth-child(even) {
@@ -102,7 +102,6 @@
     transition: background-color 0.3s ease;
 }
 
-/* New styles for the action buttons */
 .action-buttons {
     display: flex;
     gap: 8px;
@@ -129,9 +128,43 @@
     color: #e74c3c;
 }
 
+/* --- Pagination Styles --- */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.pagination button {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #e74c3c;
+    color: #fff;
+    border-color: #e74c3c;
+}
+
+.pagination button.active {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: bold;
+    border-color: #2c3e50;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 /* --- Mobile View Fixes --- */
-
 @media (max-width: 768px) {
     .manage-employee-box {
         padding: 20px;
@@ -141,15 +174,23 @@
         font-size: 24px;
         margin-bottom: 20px;
     }
-    
+
     .filter-container {
-        flex-direction: column; /* Stack filter elements vertically */
-        align-items: center;
+        flex-direction: row; /* Keep label and select on same line */
+        align-items: center; /* Center vertically */
+        justify-content: flex-end; /* Align to right */
         gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .filter-container label {
+        text-align: right;
+        width: auto; /* Don't take full width */
     }
 
     .filter-container select {
-        width: 100%; /* Make select full-width */
+        width: auto; /* Don't force fixed width */
+        min-width: 120px;
     }
 
     .employee-table-container {
@@ -161,8 +202,7 @@
         padding: 10px;
         font-size: 14px;
     }
-    
-    /* Additional adjustment for mobile table headers */
+
     .employee-table th {
         font-size: 12px;
     }
@@ -172,14 +212,24 @@
     .manage-employee-box {
         padding: 15px;
     }
-    
+
     .manage-employee-box h2 {
         font-size: 20px;
         margin-bottom: 15px;
     }
-    
+
+    .filter-container {
+        flex-direction: row; /* Keep on same line */
+        gap: 8px;
+    }
+
+    .filter-container select {
+        width: auto; /* Don't force fixed width */
+        min-width: 100px;
+    }
+
     .employee-table th,
     .employee-table td {
-        font-size: 11px; /* Smaller font size for better fit */
+        font-size: 11px;
     }
 }
